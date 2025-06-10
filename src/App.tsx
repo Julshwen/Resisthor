@@ -1,13 +1,18 @@
-import { Button } from "./components/ui/button";
+import { FiveBandsCard, FourBandsCard } from "./components/Cards";
 
 function App() {
   return (
-    <div className="flex items-center justify-center">
-      <div
-        className="z-0 absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/src/assets/background-image.jpg')" }}
+    <div className="min-h-screen w-full flex items-center justify-center relative">
+      <img
+        src="/src/assets/background-image.jpg"
+        alt="BackgroundImage"
+        className="absolute inset-0 w-full h-full object-cover blur-lg -z-10"
       />
-      <div className="absolute inset-0 bg-white/15 backdrop-blur-md" />
+
+      <div className="relative z-10 flex flex-col gap-10">
+        <FourBandsCard />
+        <FiveBandsCard />
+      </div>
     </div>
   );
 }
