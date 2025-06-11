@@ -7,7 +7,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-[#D9D9D970] text-card-foreground flex flex-col gap-6 rounded-sm py-4 shadow-xl/70",
+        "bg-[#D9D9D970] text-card-foreground flex flex-col gap-6 rounded-sm py-6 shadow-xl/70",
         "h-[400px] w-[1000px]",
         // Responsive overrides for smaller screens
         "max-sm:h-[250px] max-sm:w-full max-sm:max-w-[300px]",

@@ -6,10 +6,10 @@ function App() {
       <img
         src="/src/assets/background-image.jpg"
         alt="BackgroundImage"
-        className="absolute inset-0 w-full h-full object-cover blur-lg -z-10"
+        className="absolute inset-0 w-full h-full object-cover blur-lg -z-1"
       />
 
-      <div className="relative z-10 flex flex-col gap-10">
+      <div className="relative z-1 flex flex-col gap-10">
         <FourBandsCard />
         <FiveBandsCard />
       </div>
