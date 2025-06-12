@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "./ui/button";
 
-import { Card, CardContent, CardTitle } from "./ui/card";
+import { Card, CardContent, CardFooter, CardTitle } from "./ui/card";
 
 import {
   DropdownMenu,
@@ -27,7 +27,15 @@ const colorOptions = [
   { name: "Silver", color: "bg-[#C0C0C0]", text: "text-white" },
 ];
 
-function ColorDropdown({ label }: { label: string }) {
+function ColorDropdown({
+  label,
+  bandIdx,
+  isFourBands,
+}: {
+  label: string;
+  bandIdx: number;
+  isFourBands: boolean;
+}) {
   const [selectedColor, setSelectedColor] = useState<string>(label);
 
   const handleSelect = (colorName: string) => {
@@ -37,6 +45,19 @@ function ColorDropdown({ label }: { label: string }) {
       setSelectedColor(colorName);
     }
   };
+
+  const filteredOptionsFourBands =
+    bandIdx <= 1
+      ? colorOptions.filter((c) => c.name !== "Gold" && c.name !== "Silver")
+      : colorOptions;
+  const filteredOptionsFiveBands =
+    bandIdx <= 2
+      ? colorOptions.filter((c) => c.name !== "Gold" && c.name !== "Silver")
+      : colorOptions;
+
+  const filteredOptions = isFourBands
+    ? filteredOptionsFourBands
+    : filteredOptionsFiveBands;
 
   const selected = colorOptions.find((c) => c.name === selectedColor) || {
     color: "bg-white",
@@ -55,7 +76,7 @@ function ColorDropdown({ label }: { label: string }) {
           COLORS
         </DropdownMenuLabel>
         <DropdownMenuGroup>
-          {colorOptions.map((color) => (
+          {filteredOptions.map((color) => (
             <DropdownMenuItem
               key={color.name}
               className={`${color.color} ${color.text}`}
@@ -77,11 +98,14 @@ export function FourBandsCard() {
         RESISTOR CALCULATOR (FOUR BANDS)
       </CardTitle>
       <CardContent className="flex flex-row items-center gap-x-2 sm:gap-x-4 md:gap-x-8 mt-[30px] w-full">
-        <ColorDropdown label="1st Band" />
-        <ColorDropdown label="2nd Band" />
-        <ColorDropdown label="3rd Band" />
-        <ColorDropdown label="4th Band" />
+        <ColorDropdown label="1st Band" bandIdx={0} isFourBands={true} />
+        <ColorDropdown label="2nd Band" bandIdx={1} isFourBands={true} />
+        <ColorDropdown label="3rd Band" bandIdx={2} isFourBands={true} />
+        <ColorDropdown label="4th Band" bandIdx={3} isFourBands={true} />
       </CardContent>
+      <CardFooter className="mt-[30px] text-[35px] font-bold font-mono text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[30px]">
+        Results
+      </CardFooter>
     </Card>
   );
 }
@@ -93,11 +117,11 @@ export function FiveBandsCard() {
         RESISTOR CALCULATOR (FIVE BANDS)
       </CardTitle>
       <CardContent className="flex flex-row items-center gap-x-2 sm:gap-x-4 md:gap-x-8 mt-[30px] w-full">
-        <ColorDropdown label="1st Band" />
-        <ColorDropdown label="2nd Band" />
-        <ColorDropdown label="3rd Band" />
-        <ColorDropdown label="4th Band" />
-        <ColorDropdown label="5th Band" />
+        <ColorDropdown label="1st Band" bandIdx={0} isFourBands={false} />
+        <ColorDropdown label="2nd Band" bandIdx={1} isFourBands={false} />
+        <ColorDropdown label="3rd Band" bandIdx={2} isFourBands={false} />
+        <ColorDropdown label="4th Band" bandIdx={3} isFourBands={false} />
+        <ColorDropdown label="5th Band" bandIdx={4} isFourBands={false} />
       </CardContent>
     </Card>
   );
