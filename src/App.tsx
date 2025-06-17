@@ -12,6 +12,14 @@ function App() {
       <div className="relative z-1 flex flex-col gap-10">
         <FourBandsCard />
         <FiveBandsCard />
+        <img
+          src="/src/assets/resistor-table.jpg"
+          alt="Resistor Table"
+          className="mb-[35px] h-[400px] w-[1000px]
+        max-sm:h-[250px] max-sm:w-full max-sm:max-w-[300px]
+        max-md:h-[300px] max-md:max-w-[500px]
+        max-lg:h-[350px] max-lg:max-w-[700px]"
+        />
       </div>
     </div>
   );
